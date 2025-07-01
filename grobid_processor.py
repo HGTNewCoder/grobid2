@@ -7,7 +7,8 @@ import secret_input
 import PyPDF2
 import os
 
-GROBID_URL = "http://localhost:8070/api/processHeaderDocument" # Adjust if GROBID is hosted elsewhere
+GROBID_IP = secret_input.GROBID_IP  # IP address of GROBID server
+GROBID_URL = f"http://{GROBID_IP}:8070/api/processHeaderDocument" # Adjust if GROBID is hosted elsewhere
 
 # Google Sheets setup
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
@@ -110,7 +111,7 @@ def update_sheet(sheet_id, range_name, data):
         spreadsheetId=sheet_id, range=range_name,
         valueInputOption='USER_ENTERED', body=body).execute()
 
-pages = ["2.2", "2.1", "1.2", "1.1"]
+pages = ["1.1", "1.2", "2.1", "2.2"]
 
 def main(page_id):
     # Fetch PDF URLs from Sheet
