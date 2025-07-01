@@ -1,0 +1,5 @@
+PyPDF2
+requests
+lxml
+google-auth
+google-api-python-client
