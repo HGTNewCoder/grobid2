@@ -7,12 +7,15 @@ import secret_input
 import PyPDF2
 import os
 
-GROBID_IP = secret_input.GROBID_IP  # IP address of GROBID server
+#GROBID SETUP
+GROBID_IP = secret_input.GROBID_IP
 GROBID_URL = f"http://{GROBID_IP}:8070/api/processHeaderDocument" # Adjust if GROBID is hosted elsewhere
 
 # Google Sheets setup
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-CREDS = service_account.Credentials.from_service_account_file('credentials.json', scopes=SCOPES)
+CREDS = service_account.Credentials.from_service_account_file('credentials.json', scopes=SCOPES) #Read credentials from a JSON file
+if not os.path.exists('credentials.json'):
+    raise FileNotFoundError("Credentials file not found. Please provide 'credentials.json'.")
 SHEETS_SERVICE = build('sheets', 'v4', credentials=CREDS)
 
 # Parameters
@@ -22,6 +25,7 @@ output_start_column = secret_input.OUTPUT_START_COLUMN  # Column for Title
 output_end_column = secret_input.OUTPUT_END_COLUMN  # Column for Year
 output_start_row = secret_input.OUTPUT_START_ROW
 status_column = secret_input.STATUS_COLUMN  # Column for Status
+pages = secret_input.PAGES  # Pages to process, adjust as needed
 
 def extract_metadata(pdf_url):
     try:
@@ -110,8 +114,6 @@ def update_sheet(sheet_id, range_name, data):
     SHEETS_SERVICE.spreadsheets().values().update(
         spreadsheetId=sheet_id, range=range_name,
         valueInputOption='USER_ENTERED', body=body).execute()
-
-pages = ["1.1", "1.2", "2.1", "2.2"]
 
 def main(page_id):
     # Fetch PDF URLs from Sheet
