@@ -1,4 +1,7 @@
-#Features need to be added
-- Upload to clouds
-- Check if the column was filled or not then Deploy Script
-- Bug: Only work on 1 row
+Install Requirements
+pip install requirements.txt
+
+IMPORTANT
+Create project in Google Cloud Console and download credentials.json file
+
+Change Parameters in secret_input.py
