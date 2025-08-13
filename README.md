@@ -10,7 +10,7 @@ Follow these instructions to get your project set up and running.
 
 ### **Installation**
 
-1.  **Clone the repository (optional):**
+1.  **Clone the repository:**
     ```bash
     git clone https://github.com/HGTNewCoder/grobid2.git
     ```
