@@ -1,4 +1,4 @@
-# [grobid2 - bibliography extracter]
+# grobid2 - bibliography extracter
 
 A brief description of your project and what it does. Explain its purpose and main features here.
 
